@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Pokédex</title>
+    <!-- Fuentes estilo retro y futurista -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="pokedex-wrapper">
+        <div class="pokedex">
+            
+            <!-- ================= PANEL IZQUIERDO ================= -->
+            <section class="pokedex-panel panel-left" aria-label="Pantalla y visor de la Pokédex">
+                
+                <!-- Luces superiores icónicas -->
+                <div class="pokedex-header">
+                    <button type="button" class="big-blue-light" id="blue-light" title="Repetir grito de Pokémon" aria-label="Sensor de energía">
+                        <span class="blue-light-shine"></span>
+                    </button>
+                    <div class="small-lights" aria-hidden="true">
+                        <span class="light light-red"></span>
+                        <span class="light light-yellow"></span>
+                        <span class="light light-green"></span>
+                    </div>
+                </div>
+
+                <!-- Marco y Visor Principal de Imagen -->
+                <div class="screen-frame">
+                    <div class="screen-header-dots" aria-hidden="true">
+                        <span class="screen-dot"></span>
+                        <span class="screen-dot"></span>
+                    </div>
+                    
+                    <div class="screen-display">
+                        <div class="screen-overlay" aria-hidden="true"></div>
+                        <img id="imagen" src="" alt="Pokémon" class="pokemon-image">
+                        <div id="image-placeholder" class="image-placeholder">
+                            <div class="pokeball-icon" aria-hidden="true"></div>
+                            <span>Busca un Pokémon por nombre o número</span>
+                        </div>
+                    </div>
+
+                    <div class="screen-bottom-controls">
+                        <button type="button" class="red-screen-button" id="btn-sound" title="Reproducir sonido de Pokémon" aria-label="Reproducir grito"></button>
+                        <div class="speaker-grill" aria-hidden="true">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controles del panel izquierdo (D-Pad de navegación) -->
+                <div class="panel-left-controls">
+                    <div class="dpad" id="dpad" role="group" aria-label="Cruceta de navegación de Pokémon">
+                        <div class="dpad-center" aria-hidden="true"></div>
+                        <button type="button" class="dpad-btn dpad-up" id="dpad-up" title="Siguiente Pokémon (+1)" aria-label="Siguiente Pokémon"></button>
+                        <button type="button" class="dpad-btn dpad-right" id="dpad-right" title="Siguiente Pokémon (+1)" aria-label="Siguiente Pokémon"></button>
+                        <button type="button" class="dpad-btn dpad-down" id="dpad-down" title="Pokémon anterior (-1)" aria-label="Pokémon anterior"></button>
+                        <button type="button" class="dpad-btn dpad-left" id="dpad-left" title="Pokémon anterior (-1)" aria-label="Pokémon anterior"></button>
+                    </div>
+                    <div class="dpad-hints" aria-hidden="true">
+                        <span>▲ / ► SIG</span>
+                        <span>▼ / ◄ ANT</span>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- ================= BISAGRA CENTRAL (TABLET / DESKTOP) ================= -->
+            <div class="pokedex-hinge" aria-hidden="true">
+                <div class="hinge-bar top"></div>
+                <div class="hinge-joint"></div>
+                <div class="hinge-bar middle"></div>
+                <div class="hinge-joint"></div>
+                <div class="hinge-bar bottom"></div>
+            </div>
+
+            <!-- ================= PANEL DERECHO ================= -->
+            <section class="pokedex-panel panel-right" aria-label="Datos y controles de la Pokédex">
+                
+                <div class="pokedex-title-bar">
+                    <h1>POKÉDEX</h1>
+                    <span class="pokedex-badge">KANTO v2.0</span>
+                </div>
+
+                <!-- Sección de Búsqueda -->
+                <div class="search-section">
+                    <div class="search-box">
+                        <input 
+                            type="text" 
+                            id="pokemon" 
+                            placeholder="Nombre o ID (ej: pikachu, 25)" 
+                            autocomplete="off" 
+                            autocorrect="off" 
+                            autocapitalize="none" 
+                            spellcheck="false"
+                            aria-label="Nombre o ID del Pokémon"
+                        >
+                        <button type="button" id="buscar" aria-label="Buscar Pokémon">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+                                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                            </svg>
+                            <span>BUSCAR</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pantalla LCD de Datos / Información -->
+                <div class="data-screen">
+                    <div class="data-header">
+                        <h1 id="nombre">LISTO</h1>
+                        <h3 id="Nº">Nº: ---</h3>
+                    </div>
+                    
+                    <!-- Tipos del Pokémon -->
+                    <div class="data-types" id="tipos" aria-label="Tipos del Pokémon"></div>
+
+                    <div class="data-stats">
+                        <h3 id="Altura">Altura: ---</h3>
+                        <h3 id="Peso">Peso: ---</h3>
+                    </div>
+
+                    <div id="mensaje-error" class="mensaje-error" style="display: none;" role="alert">
+                        ¡Pokémon no encontrado! Revisa el nombre o número.
+                    </div>
+                </div>
+
+                <!-- Consola de Teclado y Botones del Panel Derecho -->
+                <div class="controls-deck">
+                    <div class="keypad-matrix" aria-hidden="true">
+                        <span class="key-cell"></span>
+                        <span class="key-cell"></span>
+                        <span class="key-cell"></span>
+                        <span class="key-cell"></span>
+                        <span class="key-cell"></span>
+                        <span class="key-cell"></span>
+                        <span class="key-cell"></span>
+                        <span class="key-cell"></span>
+                        <span class="key-cell"></span>
+                        <span class="key-cell"></span>
+                    </div>
+                    
+                    <div class="mini-buttons">
+                        <div class="pill-buttons">
+                            <button type="button" class="pill pill-blue" id="btn-sound-pill" title="Reproducir grito" aria-label="Reproducir grito"></button>
+                            <button type="button" class="pill pill-orange" id="btn-clear" title="Limpiar búsqueda" aria-label="Limpiar búsqueda"></button>
+                        </div>
+                        <button type="button" class="round-green-button" id="btn-random" title="Pokémon aleatorio" aria-label="Pokémon aleatorio"></button>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- Audio para el grito del Pokémon -->
+            <audio id="Sonido"></audio>
+
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
